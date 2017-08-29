@@ -10,6 +10,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+//json
+import {JsonpModule, Jsonp, Response} from '@angular/http';
+
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
   authDomain: masterFirebaseConfig.authDomain,
@@ -41,7 +44,8 @@ import { WatchListItemComponent } from './watch-list-item/watch-list-item.compon
     routing,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    JsonpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
