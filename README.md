@@ -26,3 +26,13 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Creations Steps
+1. `Bower init`
+2. Add bower components to .gitingore
+3. Add bower bootstrap styles to ng-cli config
+4. Add firebase credentials file to .gitignore
+5. Add nav bar to app.component
+6. Create about component
+7. Create the app.routing.ts files
+8. Add about route
