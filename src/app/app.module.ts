@@ -22,13 +22,17 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { WatchComponent } from './watch/watch.component';
 import { ConfigComponent } from './config/config.component';
+import { WatchListComponent } from './watch-list/watch-list.component';
+import { WatchListItemComponent } from './watch-list-item/watch-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     WatchComponent,
-    ConfigComponent
+    ConfigComponent,
+    WatchListComponent,
+    WatchListItemComponent
   ],
   imports: [
     BrowserModule,

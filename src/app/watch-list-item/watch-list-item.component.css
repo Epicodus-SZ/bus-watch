@@ -1,0 +1,9 @@
+.divTableRow {
+  display: table-row;
+}
+
+.divTableCell {
+  border: 1px solid #999999;
+  display: table-cell;
+  padding: 3px 10px;
+}
