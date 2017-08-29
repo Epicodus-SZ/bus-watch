@@ -35,4 +35,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 5. Add nav bar to app.component
 6. Create about component
 7. Create the app.routing.ts files
-8. Add about route
+8. Add about route.
+9. Create config component
+10. Create watch component
+11. add routes to these pages.
+12. `npm install angularfire2@4.0.0-rc.0 firebase --save`
+13. Add `"types": [ "firebase" ]` to tsconfig.json
