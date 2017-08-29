@@ -41,3 +41,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 11. add routes to these pages.
 12. `npm install angularfire2@4.0.0-rc.0 firebase --save`
 13. Add `"types": [ "firebase" ]` to tsconfig.json
+14. Add user auth by following LHTP guide.
+15. `npm install promise-polyfill --save-exact` to resolve bug

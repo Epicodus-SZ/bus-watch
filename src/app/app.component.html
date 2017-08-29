@@ -8,6 +8,12 @@
         <li><a routerLink="watch">Watch</a></li>
         <li><a routerLink="config">Configure</a></li>
         <li><a routerLink="about">About</a></li>
+        <li *ngIf="isLoggedIn">
+          <a (click)="logout()">Log out ({{userName}})</a>
+        </li>
+        <li *ngIf ="!isLoggedIn">
+          <a (click)="login()">Log in</a>
+        </li>
       </ul>
     </div>
   </nav>
