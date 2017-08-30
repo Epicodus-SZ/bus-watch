@@ -20,7 +20,6 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class ApiDataService {
   watches: FirebaseListObservable<Watch[]>;
     apiRoot: string = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_570.json';
-    output: number;
 
     constructor(private jsonp: Jsonp, private database: AngularFireDatabase)  {
       this.watches = database.list('watches');
@@ -28,19 +27,21 @@ export class ApiDataService {
 
     apiCall(stopId: string) {
       let apiURL =`${this.apiRoot}?callback=JSONP_CALLBACK&key=377e7bc6-e6c6-494d-b18f-f66b6dd49226`;
-      return this.jsonp.request(apiURL).map(response => response.json());
+      return this.jsonp.request(apiURL).map(
+        res => res.json()
+      );
     }
 
-    getNextArrival(stopId: string, routeId: string) {
-      this.apiCall(stopId).subscribe(response => {
-        response.data.entry.arrivalsAndDepartures.forEach(arrival => {
-          if(arrival.routeShortName === routeId) {
-            this.output = arrival.scheduledArrivalTime;
-          }
-        });
-      });
-      return this.output;
-    }
+    // getMinutesToNext(stopId: string, routeId: string) {
+    //
+    //   return this.apiCall(stopId).subscribe(response => {
+    //     response.data.entry.arrivalsAndDepartures.find(arrival => {
+    //       if(arrival.routeShortName === routeId) {
+    //         return arrival.scheduledArrivalTime;
+    //       }
+    //     });
+    //   });
+    // }
 
 
     getWatches() {
