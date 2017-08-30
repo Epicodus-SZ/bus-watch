@@ -19,14 +19,15 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 @Injectable()
 export class ApiDataService {
   watches: FirebaseListObservable<Watch[]>;
-    apiRoot: string = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_570.json';
+
 
     constructor(private jsonp: Jsonp, private database: AngularFireDatabase)  {
       this.watches = database.list('watches');
     }
 
     apiCall(stopId: string) {
-      let apiURL =`${this.apiRoot}?callback=JSONP_CALLBACK&key=377e7bc6-e6c6-494d-b18f-f66b6dd49226`;
+      let apiRoot: string = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_' + stopId + '.json';
+      let apiURL =`${apiRoot}?callback=JSONP_CALLBACK&key=377e7bc6-e6c6-494d-b18f-f66b6dd49226`;
       return this.jsonp.request(apiURL).map(
         res => res.json()
       );
