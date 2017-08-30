@@ -13,17 +13,42 @@ import { ApiDataService } from '../api-data.service';
 export class WatchComponent implements OnInit {
   //old way
   //watches: FirebaseListObservable<any[]>;
-  watches: Watch[];
-  constructor(private apidata: ApiDataService) { }
+  watches: Watch[] = [];
+  data: any;
+  time: number;
+  currentTime: number;
+  constructor(private apiData: ApiDataService) { }
 
   ngOnInit() {
-    // old way
-    //this.watches = this.apidata.getWatches();
+    //populate watches array
+    this.watches = [];
+    this.apiData.getWatches().subscribe(watches => {
+      watches.forEach(watch => {
+        // watch.nextArrival = this.oneBusApiService.getNextArrival(watch.stopId, watch.routeId);
+        console.log(watch);
+        // this.watches.push(watch);
+        //watch.nextArrival = this.apiData.getNextArrival(watch.stopId, watch.routeId);
+        this.watches.push(new Watch(watch.stopId, watch.routeId, watch.userId, watch.nextArrival));
+      });
+    });
+  }
 
-    this.apidata.getWatches().subscribe(dataLastEmittedFromObserver => {
-     this.watches = dataLastEmittedFromObserver;
-     console.log(this.watches);
-   })
+  runAfterInitToGetArrivalTimes() {
+    this.apiData.apiCall("1_570").subscribe(res => this.data = res);
+    this.watches.forEach(watch => {
+      this.getTime(watch.routeID);
+      watch.nextArrival = this.time;
+    });
+  }
+
+  getTime(routeId: string) {
+    debugger;
+    this.currentTime = this.data.currentTime;
+    this.data.data.entry.arrivalsAndDepartures.forEach(arrival => {
+      if(routeId == arrival.routeShortName) {
+        this.time = arrival.scheduledArrivalTime;
+      }
+    });
   }
 
 }
