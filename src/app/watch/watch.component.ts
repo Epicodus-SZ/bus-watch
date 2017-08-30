@@ -28,7 +28,7 @@ export class WatchComponent implements OnInit {
         console.log(watch);
         // this.watches.push(watch);
         //watch.nextArrival = this.apiData.getNextArrival(watch.stopId, watch.routeId);
-        this.watches.push(new Watch(watch.stopId, watch.routeId, watch.userId, watch.nextArrival));
+        this.watches.push(new Watch(watch.routeId, watch.stopId, watch.userId, watch.nextArrival));
       });
     });
   }
@@ -37,12 +37,13 @@ export class WatchComponent implements OnInit {
     this.apiData.apiCall("1_570").subscribe(res => this.data = res);
     this.watches.forEach(watch => {
       this.getTime(watch.routeID);
+      debugger;
       watch.nextArrival = this.time;
     });
   }
 
   getTime(routeId: string) {
-    debugger;
+
     this.currentTime = this.data.currentTime;
     this.data.data.entry.arrivalsAndDepartures.forEach(arrival => {
       if(routeId == arrival.routeShortName) {
