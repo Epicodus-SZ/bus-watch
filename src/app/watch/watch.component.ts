@@ -17,7 +17,11 @@ export class WatchComponent implements OnInit {
   data: any;
   time: number;
   currentTime: number = 23;
-  constructor(private apiData: ApiDataService) { }
+  testNumber: number = 2;
+
+  constructor(private apiData: ApiDataService) {
+    setInterval(() => { this.runAfterInitToGetArrivalTimes(); }, 5000);
+  }
 
   ngOnInit() {
     //populate watches array
@@ -32,13 +36,18 @@ export class WatchComponent implements OnInit {
     });
     console.log(this.watches);
 
-    this.runAfterInitToGetArrivalTimes();
+    this.apiData.apiCall("455").subscribe(dataFromService => {this.data = dataFromService});
   }
 
   runAfterInitToGetArrivalTimes() {
-    this.apiData.apiCall("1_570").subscribe(dataFromService => {this.data = dataFromService});
 
     this.watches.forEach(watch => {
+      this.apiData.apiCall(watch.stopID).subscribe(dataFromService => {
+        this.data = dataFromService;
+        console.log("watch=",watch);
+        console.log("data from service=",dataFromService);
+      });
+
       this.getTime(watch.routeID);
       watch.nextArrival = this.time;
     });
