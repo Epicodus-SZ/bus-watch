@@ -78,6 +78,7 @@ export class ApiDataService {
       console.log(localWatchToDelete.$key)
       var watchEntryInFirebase = this.getWatchById(localWatchToDelete.$key);
       watchEntryInFirebase.remove();
+      window.location.reload();
     }
 
 }

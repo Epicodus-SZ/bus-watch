@@ -41,6 +41,7 @@ export class WatchComponent implements OnInit {
     this.watches.forEach(watch => {
       this.getTime(watch.routeID);
       watch.nextArrival = this.time;
+      
     });
   }
 
