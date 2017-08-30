@@ -5,7 +5,8 @@ export class TimeService {
 
   constructor() { }
 
-  epochToDate(input: string){
-    return 42;
+  // Convert epoch time to minutes
+  minsToArrival(currentTime: number, arrivalTime: number){
+    return (arrivalTime - currentTime)/60000
   }
 }
