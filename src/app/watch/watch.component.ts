@@ -17,7 +17,9 @@ export class WatchComponent implements OnInit {
   data: any;
   time: number;
   currentTime: number = 23;
-  constructor(private apiData: ApiDataService) { }
+  constructor(private apiData: ApiDataService) {
+    setInterval(() => { this.runAfterInitToGetArrivalTimes(); }, 1000);
+  }
 
   ngOnInit() {
     //populate watches array
