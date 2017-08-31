@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-watch-list',
@@ -11,9 +11,15 @@ export class WatchListComponent implements OnInit {
   //variables
   @Input() watches: FirebaseListObservable<any[]>;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+    for (let i in this.watches) {
+      console.log(i);
+    }
+
   }
 
 }

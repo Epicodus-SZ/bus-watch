@@ -25,13 +25,13 @@ export class WatchComponent implements OnInit {
 
   ngOnInit() {
     //populate watches array
-    this.watches = [];
+    // this.watches = [];
     this.apiData.getWatches().subscribe(watches => {
       watches.forEach(watch => {
 
         console.log(watch);
 
-        this.watches.push(new Watch(watch.routeID, watch.stopID, watch.userID, watch.nextArrival));
+        this.watches.push(watch);
       });
     });
     console.log(this.watches);
@@ -50,6 +50,7 @@ export class WatchComponent implements OnInit {
 
       this.getTime(watch.routeID);
       watch.nextArrival = this.time;
+      
     });
   }
 
