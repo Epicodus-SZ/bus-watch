@@ -9,7 +9,7 @@ This application estimates bus arrival times to the bus stops in Downtown Seattl
 4. Navigate to /Users/Guest/Desktop/bus-watch/src/app and create new file called `api-keys.ts`
 5. Create a [Firebase](https://firebase.google.com/
 ) account if you do not already have one and navigate to your Firebase Console and create a new project
-5. Refer to example-api-keys.ts in the root folder and
+6. API keys are stored in a file called /src/app/api-keys.ts.  Refer to example-api-keys.ts in the root folder to see how you can reproduce this file.  *The application will NOT work without this file*
 
 ## Development server
 
