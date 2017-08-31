@@ -1,3 +1,20 @@
 <p>
   Our about page is here
 </p>
+
+<section class="watchList">
+  <div class="panel">
+    <div class="stopLocation">
+      <a href="stop_location_here">Stop Location Here</a>
+    </div>
+    <div class="divTable">
+      <div class="divTableBody">
+        <div class="divTableRow">
+          <div class="divTableCell">Bus Route</div>
+          <div class="divTableCell">Stop ID</div>
+        </div>
+        <app-watch-list-item [watch]="watch" class="watchRow divTableRow" *ngFor="let watch of watches"></app-watch-list-item>
+      </div>
+    </div>
+  </div>
+</section>

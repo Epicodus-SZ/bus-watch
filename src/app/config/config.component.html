@@ -1,6 +1,6 @@
 <app-watch-list [watches]="watches" ></app-watch-list>
 <br>
-<h1>Add new Stop-Location and Bus-Route to Watch List</h1>
+<h1>Add New Stop-Location to Watch List</h1>
 <div>
   <h3>Select a Stop</h3>
     <select #newStop class="form-control" id="stop">
@@ -11,7 +11,6 @@
       <option value="682">682 (4th Ave & University St)</option>
       <option value="700">700 (4th Ave & Pike St)</option>
     </select>
-    <br>
     <br>
     <button (click)="submitForm(newStop.value)">Add</button>
 </div>

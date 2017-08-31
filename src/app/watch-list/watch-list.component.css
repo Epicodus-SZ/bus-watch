@@ -17,6 +17,7 @@
   border: 1px solid #999999;
   display: table-cell;
   padding: 3px 5px;
+  width: 250px;
 }
 
 .divTableHeading {
@@ -38,4 +39,19 @@
 .watchRow:hover {
   background-color: rgba(22, 28, 56, 0.62);
   cursor: pointer;
+}
+
+.panel {
+  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stopLocation {
+  display: block;
+  border: 3px solid black;
+  margin: 10px 5px 10px 5px;
+  padding: 5px 5px 5px 5px;
+  width: 500px;
 }
