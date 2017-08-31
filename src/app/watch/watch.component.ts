@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Watch } from '../watch';
 import { ApiDataService } from '../api-data.service';
-
 import { Observable } from 'rxjs/Observable';
 import { TimeService } from '../time.service';
 
@@ -15,42 +14,52 @@ import { TimeService } from '../time.service';
 })
 export class WatchComponent implements OnInit {
 
-  currentTime: Observable<number>;
   watches: Watch[] = [];
   arrivals;
-  private stopID: Observable<number>;
+  data: any;
+  currentTime;
+  watch;
 
   constructor(private apiData: ApiDataService, private timeService: TimeService) {
+    setInterval(() => { this.getNextArrivalTime(); }, 5000);
   }
 
   ngOnInit() {
-
-    //this.stopID = new Observable(res => )
-    this.apiData.getWatches().subscribe(res => this.watches = res);
-
-    this.getArrivals(this.watches[0].stopID).subscribe(res => this.handleData(res),res => this.handleError(res));
-
+    this.apiData.getWatches().subscribe(res => {
+      this.watch = res[0];
+      this.watches = res;
+    });
+    this.apiData.apiCall("570")
+    .subscribe(res => {
+        this.handleData(res),
+        res => this.handleError(res);
+    });
   }
 
-  getArrivals(stopID: string){
-    return this.apiData.getArrivals(stopID).map(res => res);
-  }
+  getNextArrivalTime() {
+    this.apiData.apiCall("570")
+    .subscribe(res => this.handleData(res), res => this.handleError(res));
 
-  getArrivalTime(cTime:number, dTime: number){
-    return this.timeService.minsToArrival(cTime,dTime);
+    // this.watches.forEach(watch => {
+    //   let counter: number = 0;
+    //   this.arrivals.forEach(arrival => {
+    //     if((watch.routeID === arrival.routeShortName) && (counter < 1)) {
+    //       if(arrival.scheduledArrivalTime > this.currentTime) {
+    //         counter++;
+    //         watch.nextArrival = ((arrival.scheduledArrivalTime - this.currentTime) / 60000);
+    //       }
+    //     }
+    //   });
+    // });
   }
 
   handleData(response) {
-    console.log('Raw response:', response);
     this.currentTime = response.currentTime;
     this.arrivals = response.data.entry.arrivalsAndDepartures;
-    console.log("depart list is:",this.arrivals);
-    // Insert Business logic here
   }
 
   handleError(error) {
-    console.log('error:', error)
+    console.log('error:', error);
     return Observable.throw(error);
   }
-
 }

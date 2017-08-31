@@ -5,5 +5,5 @@
 <app-watch-list [watches]="watches" ></app-watch-list>
 <button (click)="runAfterInitToGetArrivalTimes()">Refresh</button>
 <div *ngIf="arrivals">
-  <p *ngFor="let arrive of arrivals">name:{{arrive.routeShortName}}, minutes to arrival:{{getArrivalTime(this.currentTime,arrive.predictedArrivalTime)}}</p>
+  <p *ngFor="let arrive of arrivals">name:{{arrive.routeShortName}}, minutes to Arrival: {{arrive.scheduledArrivalTime - currentTime}}</p>
 </div>
