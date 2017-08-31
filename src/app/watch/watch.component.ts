@@ -21,15 +21,6 @@ export class WatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    //populate watches array from firebase
-    this.watches = [];
-    this.apiData.getWatches().subscribe(watches => {
-      watches.forEach(watch => {
-        this.watches.push(new Watch(watch.routeID, watch.stopID, watch.userID, watch.nextArrival));
-      });
-    });
+    this.apiData.getWatches().subscribe(res => this.watches = res);
   }
-
-
-
 }

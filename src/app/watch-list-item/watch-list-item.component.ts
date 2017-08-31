@@ -19,27 +19,15 @@ export class WatchListItemComponent implements OnInit {
 
   constructor(private apiData: ApiDataService) {
     setInterval(() => { this.getNextArrivalTime(this.watch.routeID); }, 5000);
-    // setInterval() => { this.getDataFromService(); }, 10000);
   }
 
   ngOnInit() {
+    //open stream
     this.apiData.apiCall(this.watch.stopID)
     .subscribe(res => {
         this.data = res;
-        this.dataArray.push(this.data);
-        console.log("res=",res);
-        console.log(this.dataArray);
-
     });
   }
-
-  // getDataFromService() {
-  //   this.apiData.apiCall(this.watch.stopID)
-  //   .subscribe(data => {
-  //       this.data.push[] = data
-  //       console.log("data=",data);
-  //   });
-  // }
 
   getNextArrivalTime(routeId: string) {
     this.apiData.apiCall(this.watch.stopID)
@@ -57,12 +45,13 @@ export class WatchListItemComponent implements OnInit {
     let counter: number = 0;
 
     currentTime = this.data.currentTime;
-    // if (this.data.data.entry.arrivalsAndDepartures[0].stopId === routeId)
-    debugger;
+
     this.data.data.entry.arrivalsAndDepartures.forEach(arrival => {
       if((routeId === arrival.routeShortName) && (counter < 1)) {
-        counter++;
-        time = arrival.scheduledArrivalTime;
+        if(arrival.scheduledArrivalTime > currentTime) {
+          counter++;
+          time = arrival.scheduledArrivalTime;
+        }
       }
     });
 
