@@ -14,6 +14,8 @@ import 'rxjs/add/operator/map';
 //for FireBase
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 
 
 @Injectable()
@@ -45,6 +47,28 @@ export class ApiDataService {
     //   });
     // }
 
+    //Steve's test
+    getArrivals(stopId: string) {
+      let apiRoot: string = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_' + stopId + '.json';
+      let apiURL =`${apiRoot}?callback=JSONP_CALLBACK&key=377e7bc6-e6c6-494d-b18f-f66b6dd49226`;
+      console.log("url is:", apiURL);
+      return this.jsonp
+        .request(apiURL)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+      let body = res.json();
+      return body || {};
+    }
+
+    private handleError(error: any) {
+      let errMsg = (error.message) ? error.message :
+          error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+      console.error(errMsg);
+      return Observable.throw(errMsg);
+    }
 
     getWatches() {
       return this.database.list('watches');
