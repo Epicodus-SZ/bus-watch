@@ -1,9 +1,10 @@
+<h1>Stop Watched: {{watch.stopID}}</h1>
 <h2>Current Time: {{currentTime}}</h2>
-<p>
-  Watched Buses/Trains
-</p>
-<app-watch-list [watches]="watches" ></app-watch-list>
-<button (click)="runAfterInitToGetArrivalTimes()">Refresh</button>
+
 <div *ngIf="arrivals">
-  <p *ngFor="let arrive of arrivals">name:{{arrive.routeShortName}}, minutes to Arrival: {{arrive.scheduledArrivalTime - currentTime}}</p>
+  <div *ngFor="let arrive of arrivals">
+    <p *ngIf="arrive.predictedArrivalTime">
+    name:{{arrive.routeShortName}}, minutes to Arrival: {{convertArrivalMins(currentTime,arrive.predictedArrivalTime)}}
+    </p>
+  </div>
 </div>

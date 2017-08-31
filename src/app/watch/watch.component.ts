@@ -38,6 +38,9 @@ export class WatchComponent implements OnInit {
     .subscribe(res => this.handleData(res), res => this.handleError(res));
   }
 
+  convertArrivalMins(cTime: number, aTime: number){
+    return this.timeService.minsToArrival(cTime, aTime);
+  }
   handleData(response) {
     this.currentTime = response.currentTime;
     this.arrivals = response.data.entry.arrivalsAndDepartures;
