@@ -30,7 +30,7 @@ export class ConfigComponent implements OnInit {
     console.log(this.userName);
 
     let newWatch: Watch = new Watch("0", stopId, this.userName, 0);
-    this.apiDataService.addWatch(newWatch);
+    this.apiData.addWatch(newWatch);
   }
 
   handleError(error) {
