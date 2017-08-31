@@ -40,7 +40,6 @@ export class WatchComponent implements OnInit {
           if(snapshot.val().userID === this.userEmail){
             this.watches.push(new Watch(snapshot.val().routeID, snapshot.val().stopID, snapshot.val().userID, 0));
           }
-          console.log(snapshot.key, snapshot.val());
         });
       });
     this.apiData.apiCall(this.watches[0].stopID)

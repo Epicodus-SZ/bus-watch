@@ -1,7 +1,8 @@
 <app-watch-list [watches]="watches" ></app-watch-list>
 <br>
-<h1>Add new Stop-Location and Bus-Route to Watch List</h1>
-<div>
+<div *ngIf="watches.length === 0">
+  <h1>Add new Stop-Location</h1>
+
   <h3>Select a Stop</h3>
     <select #newStop class="form-control" id="stop">
       <option value="455">455 (University St Station - Bay C)</option>
@@ -11,7 +12,6 @@
       <option value="682">682 (4th Ave & University St)</option>
       <option value="700">700 (4th Ave & Pike St)</option>
     </select>
-    <br>
     <br>
     <button (click)="submitForm(newStop.value)">Add</button>
 </div>
