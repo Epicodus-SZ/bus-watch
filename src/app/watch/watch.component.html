@@ -1,15 +1,19 @@
 <h1>Stop Watched: {{watches[0].stopID}}</h1>
 <h2>Current Time: {{currentTime}}</h2>
+  <section *ngIf="arrivals" class="watchList">
+    <div class="divTable">
+      <div class="divTableBody">
+        <div class="divTableRow">
+          <div class="divTableCell">Bus</div>
+          <div class="divTableCell">Info</div>
+          <div class="divTableCell">Arrival Time</div>
+        </div>
+        <div class="divTableRow" *ngFor="let arrive of arrivals">
+          <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{arrive.routeShortName}}</div>
+          <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{arrive.routeLongName}}</div>
+          <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{convertArrivalMins(currentTime,arrive.predictedArrivalTime)}}</div>
+        </div>
+      </div>
 
-<div class="panel">
-  <div class="stopLocation">
-    <a href="stop_location_here">Stop Location Here</a>
-  </div>
-  <div *ngIf="arrivals">
-    <div *ngFor="let arrive of arrivals">
-      <p *ngIf="arrive.predictedArrivalTime">
-      name:{{arrive.routeShortName}}, minutes to Arrival: {{convertArrivalMins(currentTime,arrive.predictedArrivalTime)}}
-      </p>
     </div>
-  </div>
-</div>
+  </section>
