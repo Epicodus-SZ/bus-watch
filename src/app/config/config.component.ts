@@ -30,7 +30,7 @@ export class ConfigComponent implements OnInit {
     this.apiData.getWatches().subscribe(snapshots=>{
         snapshots.forEach(snapshot => {
           if(snapshot.val().userID === this.userEmail){
-            this.watches.push(new Watch(snapshot.val().routeID, snapshot.val().stopID, snapshot.val().userID, 0));
+            this.watches.push(new Watch(snapshot.val().routeID, snapshot.val().stopID, snapshot.val().userID, snapshot.key));
           }
           console.log(snapshot.key, snapshot.val());
         });

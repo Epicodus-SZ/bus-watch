@@ -93,16 +93,16 @@ export class ApiDataService {
     //   this.watch.remove();
     // }
 
-    getWatchById(watchId: string){
-      return this.database.object('watches/' + watchId);
+    getWatchById($key: string){
+      return this.database.object('watches/' + $key);
     }
 
 
     deleteWatch(localWatchToDelete) {
-      console.log(localWatchToDelete.$key)
-      var watchEntryInFirebase = this.getWatchById(localWatchToDelete.$key);
+      console.log("watch to delete", localWatchToDelete.nextArrival)
+      var watchEntryInFirebase = this.getWatchById(localWatchToDelete.nextArrival);
       watchEntryInFirebase.remove();
-      window.location.reload();
+      // window.location.reload();
     }
 
 }
