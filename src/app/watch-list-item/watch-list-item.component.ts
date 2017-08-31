@@ -42,6 +42,14 @@ export class WatchListItemComponent implements OnInit {
   // }
 
   getNextArrivalTime(routeId: string) {
+    this.apiData.apiCall(this.watch.stopID)
+    .subscribe(res => {
+        this.data = res;
+        this.dataArray.push(this.data);
+        console.log("res=",res);
+        console.log(this.dataArray);
+
+    });
 
     console.log(this.data);
     let currentTime: number = 0;
