@@ -1,7 +1,9 @@
-<h1>Stop Watched: {{watches[0].stopID}}</h1>
-<h2>Current Time: {{currentTime}}</h2>
+
+
 
 <div class="panel">
+  <h2>Stop: {{watches[0].stopID}}</h2>
+  <h4>Seattle Time: {{getTime(currentime)}}</h4>
   <section *ngIf="arrivals" class="watchList">
     <div class="divTable">
       <div class="divTableBody">
@@ -11,9 +13,9 @@
           <div class="divTableCell" id="atime"><strong>Arrival Time</strong></div>
         </div>
         <div class="divTableRow" *ngFor="let arrive of arrivals">
-          <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{arrive.routeShortName}}</div>
+          <div class="busNum divTableCell" *ngIf="arrive.predictedArrivalTime">{{arrive.routeShortName}}</div>
           <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{arrive.tripHeadsign}}</div>
-          <div class="divTableCell" *ngIf="arrive.predictedArrivalTime">{{convertArrivalMins(currentTime,arrive.predictedArrivalTime)}}</div>
+          <div class="ArrivalTime divTableCell" *ngIf="arrive.predictedArrivalTime">{{convertArrivalMins(currentTime,arrive.predictedArrivalTime)}} <span class="mins">mins</span></div>
         </div>
       </div>
 

@@ -64,5 +64,8 @@ export class WatchComponent implements OnInit {
     return Observable.throw(error);
   }
 
+  getTime(cTime: number){
+    return this.timeService.getLocalTime(this.currentTime);
+  }
 
 }
