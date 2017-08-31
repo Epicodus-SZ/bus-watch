@@ -11,26 +11,7 @@
       <option value="682">682 (4th Ave & University St)</option>
       <option value="700">700 (4th Ave & Pike St)</option>
     </select>
-</div>
-
-<div>
-  <h3>Select a Route</h3>
-    <select #newRoute class="form-control" id="route">
-      <option value="link">Link Light Rail</option>
-      <option value="26E">26</option>
-      <option value="41">41</option>
-      <option value="62">62</option>
-      <option value="76">76</option>
-      <option value="101">101</option>
-      <option value="150">150</option>
-      <option value="255">255</option>
-      <option value="316">316</option>
-      <option value="510">510</option>
-      <option value="522E">522</option>
-      <option value="545E">545</option>
-      <option value="550E">550</option>
-    </select>
     <br>
     <br>
-    <button (click)="submitForm(newStop.value, newRoute.value)">Add</button>
+    <button (click)="submitForm(newStop.value)">Add</button>
 </div>

@@ -21,9 +21,9 @@ export class ConfigComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(stopId: string, routeId: string, ) {
+  submitForm(stopId: string) {
     console.log(this.userName);
-    let newWatch: Watch = new Watch(routeId, stopId, this.userName, 0);
+    let newWatch: Watch = new Watch("0", stopId, this.userName, 0);
     this.apiDataService.addWatch(newWatch);
   }
 }

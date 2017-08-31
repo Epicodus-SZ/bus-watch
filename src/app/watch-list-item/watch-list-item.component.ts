@@ -63,7 +63,7 @@ export class WatchListItemComponent implements OnInit {
   beginDeletingWatch(watchToDelete){
     if(confirm("Are you sure you want to delete this route?")){
       console.log("here " + watchToDelete.$key);
-      this.apiDataService.deleteWatch(watchToDelete);
+      this.apiData.deleteWatch(watchToDelete);
     }
   }
 }
