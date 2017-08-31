@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
+import { MomentModule } from 'angular2-moment';
 
 //firebase support
 import { AngularFireModule } from 'angularfire2';
@@ -45,7 +46,8 @@ import { WatchListItemComponent } from './watch-list-item/watch-list-item.compon
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    JsonpModule
+    JsonpModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
