@@ -26,10 +26,11 @@ export class ConfigComponent implements OnInit {
     }, res => this.handleError(res));
   }
 
-  submitForm(stopId: string, routeId: string, ) {
+  submitForm(stopId: string) {
     console.log(this.userName);
-    let newWatch: Watch = new Watch(routeId, stopId, this.userName, 0);
-    this.apiData.addWatch(newWatch);
+
+    let newWatch: Watch = new Watch("0", stopId, this.userName, 0);
+    this.apiDataService.addWatch(newWatch);
   }
 
   handleError(error) {
