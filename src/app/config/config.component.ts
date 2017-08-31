@@ -23,7 +23,7 @@ export class ConfigComponent implements OnInit {
 
   submitForm(stopId: string, routeId: string, ) {
     console.log(this.userName);
-    let newWatch: Watch = new Watch(stopId, routeId, this.userName, 0);
+    let newWatch: Watch = new Watch(routeId, stopId, this.userName, 0);
     this.apiDataService.addWatch(newWatch);
   }
 }

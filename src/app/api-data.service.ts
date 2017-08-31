@@ -12,15 +12,17 @@ import {
 } from '@angular/http';
 import 'rxjs/add/operator/map';
 //for FireBase
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 
 
 @Injectable()
 export class ApiDataService {
+  watch: FirebaseObjectObservable<any>;
   watches: FirebaseListObservable<Watch[]>;
 
     constructor(private jsonp: Jsonp, private database: AngularFireDatabase)  {
+      this.watch = database.object('/watch');
       this.watches = database.list('watches');
     }
 
@@ -61,6 +63,22 @@ export class ApiDataService {
 
     addWatch(newWatch : Watch) {
       this.watches.push(newWatch);
+    }
+
+    // deleteWatch() {
+    //   this.watch.remove();
+    // }
+
+    getWatchById(watchId: string){
+      return this.database.object('watches/' + watchId);
+    }
+
+
+    deleteWatch(localWatchToDelete) {
+      console.log(localWatchToDelete.$key)
+      var watchEntryInFirebase = this.getWatchById(localWatchToDelete.$key);
+      watchEntryInFirebase.remove();
+      window.location.reload();
     }
 
 }

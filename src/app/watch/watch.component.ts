@@ -13,9 +13,6 @@ import { ApiDataService } from '../api-data.service';
 export class WatchComponent implements OnInit {
 
   watches: Watch[] = [];
-  time: number;
-  currentTime: number = 23;
-  testNumber: number = 2;
 
   constructor(private apiData: ApiDataService) {
   }
@@ -23,4 +20,5 @@ export class WatchComponent implements OnInit {
   ngOnInit() {
     this.apiData.getWatches().subscribe(res => this.watches = res);
   }
+
 }

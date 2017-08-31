@@ -12,6 +12,7 @@ export class WatchListItemComponent implements OnInit {
 
   @Input() watch: Watch;
 
+
   // newMatch: Watch = this.watch;
   data: any;
   dataArray: any[] = [];
@@ -28,6 +29,7 @@ export class WatchListItemComponent implements OnInit {
         this.data = res;
     });
   }
+
 
   getNextArrivalTime(routeId: string) {
     this.apiData.apiCall(this.watch.stopID)
@@ -56,5 +58,12 @@ export class WatchListItemComponent implements OnInit {
     });
 
     this.watch.nextArrival = (time - currentTime) / 1000 / 60;
+  }
+
+  beginDeletingWatch(watchToDelete){
+    if(confirm("Are you sure you want to delete this route?")){
+      console.log("here " + watchToDelete.$key);
+      this.apiDataService.deleteWatch(watchToDelete);
+    }
   }
 }
