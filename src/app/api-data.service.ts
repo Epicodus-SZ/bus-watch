@@ -87,6 +87,7 @@ export class ApiDataService {
 
     addWatch(newWatch : Watch) {
       this.watches.push(newWatch);
+      window.location.reload();
     }
 
     // deleteWatch() {
@@ -97,12 +98,10 @@ export class ApiDataService {
       return this.database.object('watches/' + $key);
     }
 
-
     deleteWatch(localWatchToDelete) {
-      console.log("watch to delete", localWatchToDelete.nextArrival)
       var watchEntryInFirebase = this.getWatchById(localWatchToDelete.nextArrival);
       watchEntryInFirebase.remove();
-      // window.location.reload();
+      window.location.reload();
     }
 
 }

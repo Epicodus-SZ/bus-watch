@@ -26,7 +26,6 @@ export class ConfigComponent implements OnInit {
     // this.apiData.getWatches().subscribe(res => {
     //   this.watches = res;
     // }, res => this.handleError(res));
-
     this.apiData.getWatches().subscribe(snapshots=>{
         snapshots.forEach(snapshot => {
           if(snapshot.val().userID === this.userEmail){
