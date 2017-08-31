@@ -55,7 +55,7 @@ h2 {
 
 .panel {
   text-align: center;
-  width: 500px;
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -66,4 +66,16 @@ h2 {
   margin: 10px 5px 10px 5px;
   padding: 5px 5px 5px 5px;
   width: 500px;
+}
+
+#bus {
+  width: 100px;
+}
+
+#info {
+  width: 350px;
+}
+
+#atime {
+  width: 150px;
 }
