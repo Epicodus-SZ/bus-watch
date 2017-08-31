@@ -23,7 +23,7 @@ export class WatchComponent implements OnInit {
   userEmail;
 
   constructor(private apiData: ApiDataService, private timeService: TimeService, public authService: AuthenticationService) {
-    setInterval(() => { this.getNextArrivalTime(); }, 5000);
+    setInterval(() => { this.getNextArrivalTime(); }, 2000);
     this.authService.user.subscribe(user =>  {
         this.userName = user.displayName;
         this.userEmail = user.email;
