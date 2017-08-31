@@ -2,5 +2,10 @@
 <p>
   Watched Buses/Trains
 </p>
-<app-watch-list [watches]="watches" ></app-watch-list>
+<app-watch-list [watches]="watches"></app-watch-list>
+<button (click)="consoleDepartures()">Steve Test</button>
 <button (click)="runAfterInitToGetArrivalTimes()">Refresh</button>
+<br> test area
+<div *ngIf="departures">
+  <p *ngFor="let depart of departures">name:{{depart.routeShortName}}, minutes to depart:</p>
+</div>

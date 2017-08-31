@@ -43,3 +43,29 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 13. Add `"types": [ "firebase" ]` to tsconfig.json
 14. Add user auth by following LHTP guide.
 15. `npm install promise-polyfill --save-exact` to resolve bug
+
+
+      {
+          "code": 200,
+          "currentTime": 1504150060044,
+          "data": {
+              "entry": {
+                  "arrivalsAndDepartures": [
+                    {item1},
+                    {item2}
+                    
+                  ],
+                  "nearbyStopIds": [],
+                  "situationIds": [],
+                  "stopId": "1_570"
+              },
+              "references": {
+                  "agencies": [],
+                  "routes": [],
+                  "stops": [],
+                  "trips":[]
+              }
+          },
+          "text": "OK",
+          "version": 2
+      }
