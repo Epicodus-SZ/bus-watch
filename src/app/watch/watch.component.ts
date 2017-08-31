@@ -28,29 +28,14 @@ export class WatchComponent implements OnInit {
     this.apiData.getWatches().subscribe(res => {
       this.watch = res[0];
       this.watches = res;
-    });
-    this.apiData.apiCall("570")
-    .subscribe(res => {
-        this.handleData(res),
-        res => this.handleError(res);
-    });
+    }, res => this.handleError(res));
+    this.apiData.apiCall(this.watch.stopID)
+    .subscribe(res => this.handleData(res),res => this.handleError(res));
   }
 
   getNextArrivalTime() {
-    this.apiData.apiCall("570")
+    this.apiData.apiCall(this.watch.stopID)
     .subscribe(res => this.handleData(res), res => this.handleError(res));
-
-    // this.watches.forEach(watch => {
-    //   let counter: number = 0;
-    //   this.arrivals.forEach(arrival => {
-    //     if((watch.routeID === arrival.routeShortName) && (counter < 1)) {
-    //       if(arrival.scheduledArrivalTime > this.currentTime) {
-    //         counter++;
-    //         watch.nextArrival = ((arrival.scheduledArrivalTime - this.currentTime) / 60000);
-    //       }
-    //     }
-    //   });
-    // });
   }
 
   handleData(response) {
@@ -62,4 +47,6 @@ export class WatchComponent implements OnInit {
     console.log('error:', error);
     return Observable.throw(error);
   }
+
+
 }
