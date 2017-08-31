@@ -1,18 +1,63 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Watch } from '../watch';
+import { ApiDataService } from '../api-data.service';
 
 @Component({
   selector: 'app-watch-list-item',
   templateUrl: './watch-list-item.component.html',
-  styleUrls: ['./watch-list-item.component.css']
+  styleUrls: ['./watch-list-item.component.css'],
+  providers: [ApiDataService]
 })
 export class WatchListItemComponent implements OnInit {
 
   @Input() watch: Watch;
 
-  constructor() { }
+  // newMatch: Watch = this.watch;
+  data: any;
+  dataArray: any[] = [];
+  testTime: number = 0;
 
-  ngOnInit() {
+  constructor(private apiData: ApiDataService) {
+    setInterval(() => { this.getNextArrivalTime(this.watch.routeID); }, 5000);
+    // setInterval() => { this.getDataFromService(); }, 10000);
   }
 
+  ngOnInit() {
+    this.apiData.apiCall(this.watch.stopID)
+    .subscribe(res => {
+        this.data = res;
+        this.dataArray.push(this.data);
+        console.log("res=",res);
+        console.log(this.dataArray);
+
+    });
+  }
+
+  // getDataFromService() {
+  //   this.apiData.apiCall(this.watch.stopID)
+  //   .subscribe(data => {
+  //       this.data.push[] = data
+  //       console.log("data=",data);
+  //   });
+  // }
+
+  getNextArrivalTime(routeId: string) {
+
+    console.log(this.data);
+    let currentTime: number = 0;
+    let time: number = 8888888888888888;
+    let counter: number = 0;
+
+    currentTime = this.data.currentTime;
+    // if (this.data.data.entry.arrivalsAndDepartures[0].stopId === routeId)
+    debugger;
+    this.data.data.entry.arrivalsAndDepartures.forEach(arrival => {
+      if((routeId === arrival.routeShortName) && (counter < 1)) {
+        counter++;
+        time = arrival.scheduledArrivalTime;
+      }
+    });
+
+    this.watch.nextArrival = (time - currentTime) / 1000 / 60;
+  }
 }
