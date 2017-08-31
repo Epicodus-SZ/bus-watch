@@ -5,13 +5,14 @@ import { ApiDataService } from '../api-data.service';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
+import { TimeService } from '../time.service';
 
 
 @Component({
   selector: 'app-watch',
   templateUrl: './watch.component.html',
   styleUrls: ['./watch.component.css'],
-  providers: [ApiDataService]
+  providers: [ApiDataService, TimeService]
 })
 export class WatchComponent implements OnInit {
   //old way
@@ -25,8 +26,8 @@ export class WatchComponent implements OnInit {
   departures;
   errorMessage: string;
 
-  constructor(private apiData: ApiDataService) {
-    //setInterval(() => { this.runAfterInitToGetArrivalTimes(); }, 5000);
+  constructor(private apiData: ApiDataService, private timeService: TimeService) {
+    setInterval(() => { this.runAfterInitToGetArrivalTimes(); }, 5000);
     // this.watches = apiData.getWatches();
   }
 
@@ -35,8 +36,8 @@ export class WatchComponent implements OnInit {
     this.apiData.getWatches().subscribe(res => this.watches = res);
 
     //Steve's Test
-    this.getDeparts('570').subscribe(res => this.departures = res.data.entry.arrivalsAndDepartures);
-          
+    this.getDeparts('570').subscribe(res => this.handleData(res));
+
   } //end of onInit
 
   getDeparts(stopID: string){
@@ -44,8 +45,8 @@ export class WatchComponent implements OnInit {
   }
 
   handleData(response) {
-    debugger;
     console.log('Raw response:', response);
+    this.currentTime = response.currentTime;
     this.departures = response.data.entry.arrivalsAndDepartures;
     console.log("depart list is:",this.departures);
     // Insert Business logic here
@@ -60,6 +61,10 @@ export class WatchComponent implements OnInit {
     console.log("departures1 is = ", this.departures);
   }
 
+  getDepartureTime(cTime:number, dTime: number){
+    return this.timeService.minsToArrival(cTime,dTime);
+
+  }
   runAfterInitToGetArrivalTimes() {
 
     this.watches.forEach(watch => {

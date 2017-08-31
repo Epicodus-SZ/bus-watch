@@ -7,5 +7,5 @@
 <button (click)="runAfterInitToGetArrivalTimes()">Refresh</button>
 <br> test area
 <div *ngIf="departures">
-  <p *ngFor="let depart of departures">name:{{depart.routeShortName}}, minutes to depart:</p>
+  <p *ngFor="let depart of departures">name:{{depart.routeShortName}}, minutes to depart:{{getDepartureTime(this.currentTime,depart.predictedArrivalTime)}}</p>
 </div>

@@ -6,7 +6,8 @@ export class TimeService {
   constructor() { }
 
   // Convert epoch time to minutes
-  minsToArrival(currentTime: number, arrivalTime: number){
-    return (arrivalTime - currentTime)/60000
+  minsToArrival(currentTime: number, departTime: number){
+    let output = (departTime - currentTime)/60000;
+    return Math.ceil(output);
   }
 }
