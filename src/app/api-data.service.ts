@@ -71,7 +71,7 @@ export class ApiDataService {
     }
 
     getWatches() {
-      return this.database.list('watches');
+      return this.database.list('watches', { preserveSnapshot: true});
     }
 
     // setTimes(watches: FirebaseListObservable<any[]>) {

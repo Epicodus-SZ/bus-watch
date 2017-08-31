@@ -11,26 +11,37 @@ import { Observable } from 'rxjs/Observable';
   providers: [AuthenticationService, ApiDataService]
 })
 export class ConfigComponent implements OnInit {
-  watches;
+  watches: Watch[] = [];
   private userName: string;
+  private userEmail: string;
 
   constructor(private apiData: ApiDataService, public authService: AuthenticationService) {
     this.authService.user.subscribe(user =>  {
         this.userName = user.displayName;
+        this.userEmail = user.email;
     });
   }
 
   ngOnInit() {
-    this.apiData.getWatches().subscribe(res => {
-      this.watches = res;
-    }, res => this.handleError(res));
+    // this.apiData.getWatches().subscribe(res => {
+    //   this.watches = res;
+    // }, res => this.handleError(res));
+
+    this.apiData.getWatches().subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          if(snapshot.val().userID === this.userEmail){
+            this.watches.push(new Watch(snapshot.val().routeID, snapshot.val().stopID, snapshot.val().userID, 0));
+          }
+          console.log(snapshot.key, snapshot.val());
+        });
+      });
   }
 
   submitForm(stopId: string) {
     console.log(this.userName);
 
-    let newWatch: Watch = new Watch("0", stopId, this.userName, 0);
-    this.apiDataService.addWatch(newWatch);
+    let newWatch: Watch = new Watch("0", stopId, this.userEmail, 0);
+    this.apiData.addWatch(newWatch);
   }
 
   handleError(error) {
