@@ -31,10 +31,6 @@ export class WatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.apiData.getWatches().subscribe(res => {
-    //   this.watch = res[0];
-    //   this.watches = res;
-    // }, res => this.handleError(res));
     this.apiData.getWatches().subscribe(snapshots=>{
         snapshots.forEach(snapshot => {
           if(snapshot.val().userID === this.userEmail){
