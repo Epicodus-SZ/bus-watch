@@ -1,11 +1,11 @@
 { "watches": [{
     "routeID": "26E",
-    "stopID": "1_570",
+    "stopID": "570",
     "userID": "szaske",
     "id": "1"
     }, {
-    "routeID": "26E",
-    "stopID": "1_570",
+    "routeID": "62",
+    "stopID": "570",
     "userID": "szaske",
     "id": "2"
     }]

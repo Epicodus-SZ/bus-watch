@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { Watch } from './watch';
 import {
   Headers,
@@ -20,7 +20,6 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 export class ApiDataService {
   watch: FirebaseObjectObservable<any>;
   watches: FirebaseListObservable<Watch[]>;
-
 
     constructor(private jsonp: Jsonp, private database: AngularFireDatabase)  {
       this.watch = database.object('/watch');

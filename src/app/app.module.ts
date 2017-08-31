@@ -35,7 +35,7 @@ import { WatchListItemComponent } from './watch-list-item/watch-list-item.compon
     WatchComponent,
     ConfigComponent,
     WatchListComponent,
-    WatchListItemComponent
+    WatchListItemComponent,
   ],
   imports: [
     BrowserModule,
