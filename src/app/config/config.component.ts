@@ -31,9 +31,9 @@ export class ConfigComponent implements OnInit {
           if(snapshot.val().userID === this.userEmail){
             this.watches.push(new Watch(snapshot.val().routeID, snapshot.val().stopID, snapshot.val().userID, snapshot.key));
           }
-          console.log(snapshot.key, snapshot.val());
         });
       });
+      console.log(this.watches);
   }
 
   submitForm(stopId: string) {
